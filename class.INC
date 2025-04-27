@@ -45,7 +45,7 @@ enum zombieClassEnumInfo {
 }
 new ZombieClassInfo[max_classes][zombieClassEnumInfo];
 	
-stock AddZombieClass(classid, skinid, Float:resistence, weaponid, Float:detection, Float:rangeattack = 0.6, shootdelay = 100, movtype = FCNPC_MOVE_TYPE_SPRINT, Float:movspeed = 1.5) {
+stock AddZombieClass(classid, skinid, Float:resistence, weaponid, Float:detection, Float:rangeattack = 0.6, shootdelay = 100, movtype = FCNPC_MOVE_TYPE_RUN, Float:movspeed = 0.36444) {
 
     ZombieClassInfo[index_class][zombie_class_id] = classid;
     ZombieClassInfo[index_class][zombie_class_resistence] = resistence;
@@ -95,7 +95,7 @@ stock SetupZombiesClasses() {
     AddZombieClass(zombie_class_serra,  	213, 	300.0, 	9, 	 55.0);
     
     // Zombies que explodem
-    AddZombieClass(zombie_class_bomber, 	129, 	425.0,  0, 	 45.0,  	 .movtype = FCNPC_MOVE_TYPE_RUN, .movspeed = 1.0);
+    AddZombieClass(zombie_class_bomber, 	129, 	425.0,  0, 	 45.0,  	 .movtype = FCNPC_MOVE_TYPE_RUN, .movspeed = 0.38444);
 //                                                                           alcance do disparo    shoot delay
     // Bandidos
     AddZombieClass(zombie_class_bandido, 	29, 	70.0,   22,  42.0,     	 .rangeattack = 25.0,  .shootdelay = 150);

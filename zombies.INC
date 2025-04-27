@@ -57,7 +57,7 @@ stock connectZombieToServer(world=0) {
 	    ZombieInfo[zo_id][zombie_spawnz] += 1.0;
 	    
 //	    ZombieInfo[zo_id][zombie_velocity]    = MOVE_SPEED_RUN;
-		ZombieInfo[zo_id][zombie_velocity]    = FCNPC_MOVE_SPEED_SPRINT;
+		ZombieInfo[zo_id][zombie_velocity]    = FCNPC_MOVE_SPEED_RUN;
 
 	    FCNPC_Spawn(zo_id, 136, ZombieInfo[zo_id][zombie_spawnx], ZombieInfo[zo_id][zombie_spawny], ZombieInfo[zo_id][zombie_spawnz]);
 	    FCNPC_SetVirtualWorld(zo_id, world);
@@ -187,10 +187,10 @@ stock CountZombiesFollowPlayer(playerid) {
 		if (ZombieInfo[zombie][zombie_attack] == playerid) {
 
 			//ZombieInfo[zombie][zombie_velocity] = (0.51000) - (count * 0.025);
-			ZombieInfo[zombie][zombie_velocity] = (ZombieInfo[zombie][zombie_movspeed]) - (count * 0.001);
+			ZombieInfo[zombie][zombie_velocity] = (ZombieInfo[zombie][zombie_movspeed]) - (count * 0.025);
 
-			if (ZombieInfo[zombie][zombie_velocity] > 2.0)
-			    ZombieInfo[zombie][zombie_velocity] = 2.0;
+			if (ZombieInfo[zombie][zombie_velocity] < 0.20000)
+			    ZombieInfo[zombie][zombie_velocity] = 0.20000;
 			
 			count ++;
 	 	}
@@ -609,7 +609,7 @@ stock spawnServerBandido(Float:x, Float:y, Float:z, Float:ang, skinid = 0) {
 	    ZombieInfo[zo_id][zombie_observando]  = 0;
 	    ZombieInfo[zo_id][zombie_lastupdate]  = GetTickCount() + 10000;
 	    
-	    ZombieInfo[zo_id][zombie_velocity]    = FCNPC_MOVE_SPEED_SPRINT;
+	    ZombieInfo[zo_id][zombie_velocity]    = FCNPC_MOVE_SPEED_RUN;
 
 		// Info da classe
 	  	ZombieInfo[zo_id][zombie_health]    = ZombieClassInfo[randClass][zombie_class_resistence];
@@ -700,7 +700,6 @@ callback respawnZombie(npcid) {
   	ZombieInfo[npcid][zombie_class_defalt]= randClass;
   	ZombieInfo[npcid][zombie_dead]      = 0;
   	ZombieInfo[npcid][zombie_walktime]  = gettime() + (5 + random(12));
-  	ZombieInfo[npcid][zombie_velocity]  = ZombieClassInfo[randClass][zombie_class_movspeed];
 
 	// Se a class tiver uma arma
 	if (ZombieClassInfo[randClass][zombie_class_weapon]) {
